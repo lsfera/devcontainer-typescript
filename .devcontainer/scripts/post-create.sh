@@ -15,6 +15,12 @@ sudo apt-get clean
 sudo rm -rf /var/lib/apt/lists/*
 
 #######
+# Git
+#######
+git config --global --get-all safe.directory | grep -qx /workspace \
+    || git config --global --add safe.directory /workspace
+
+#######
 # Node / pnpm
 #######
 sudo mkdir -p node_modules "$PNPM_HOME"
