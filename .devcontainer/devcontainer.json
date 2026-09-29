@@ -1,0 +1,42 @@
+{
+    "name": "devcontainer-typescript",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "devcontainer",
+    "workspaceFolder": "/workspace",
+    "mounts": [
+        "source=pnpm-store,target=/usr/local/share/pnpm/store,type=volume",
+        "source=${localEnv:SSH_AUTH_SOCK},target=/ssh-agent.sock,type=bind,consistency=cached",
+        "source=${localEnv:HOME}/.ssh/known_hosts,target=/home/node/.ssh/known_hosts,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder}/.devcontainer/scripts,target=/scripts,type=bind,consistency=cached"
+    ],
+    "remoteEnv": {
+        "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+    },
+    "containerEnv": {
+        "SSH_AUTH_SOCK": "/ssh-agent.sock"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1.10.0": {
+            "moby": false
+        },
+        "ghcr.io/shyim/devcontainers-features/bun:0": {}
+    },
+    "forwardPorts": [
+        3001,
+        5173,
+        4173
+    ],
+    // Write the host path and the ws/<project> to mount (WS_PROJECT) to .env before compose runs
+    "initializeCommand": "${localWorkspaceFolder}/.devcontainer/scripts/initialize.sh",
+    "postCreateCommand": "/scripts/post-create.sh",
+    "postStartCommand": "/scripts/post-start.sh",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "Gruntfuggly.todo-tree",
+                "Anthropic.claude-code",
+                "biomejs.biome"
+            ]
+        }
+    }
+}

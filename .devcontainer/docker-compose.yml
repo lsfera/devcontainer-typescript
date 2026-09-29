@@ -1,0 +1,23 @@
+services:
+  devcontainer:
+    image: mcr.microsoft.com/devcontainers/typescript-node:26-trixie
+    environment:
+      - CYPRESS_INSTALL_BINARY=0
+      - TESTCONTAINERS_HOST_OVERRIDE=host.docker.internal
+      - TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
+      - HOST_WORKSPACE_FOLDER=${LOCAL_HOST_WORKSPACE}/ws/${WS_PROJECT:-circuit-breaker}
+    volumes:
+      - ../ws/${WS_PROJECT:-circuit-breaker}:/workspace:cached
+      # One node_modules volume per project, so switching WS_PROJECT doesn't mix installs.
+      - node_modules:/workspace/node_modules
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+    networks:
+      - devcontainer_shared
+networks:
+  devcontainer_shared:
+    name: devcontainer
+    driver: bridge
+volumes:
+  node_modules:
+    name: devcontainer-typescript-${WS_PROJECT:-circuit-breaker}-node_modules

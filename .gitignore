@@ -1,0 +1,4 @@
+ws/
+.env
+.env.*
+.DS_Store
