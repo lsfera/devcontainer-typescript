@@ -77,3 +77,7 @@ installed on start if it is missing.
 ws/                         your project repos (git-ignored)
 up.sh                       start the container, optionally switching project
 ```
+
+## License
+
+[MIT](LICENSE)
