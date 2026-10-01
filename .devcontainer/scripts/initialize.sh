@@ -23,3 +23,11 @@ fi
     echo "WS_PROJECT=$WS_PROJECT"
 } > "$ENV_FILE"
 echo "Mounting ws/$WS_PROJECT at /workspace"
+
+# Make sure the host agent has a key to forward. Non-fatal: there is no TTY here,
+# so a key whose passphrase isn't in the keychain can't be loaded automatically.
+if ! ssh-add -l >/dev/null 2>&1; then
+    echo "No keys in the host SSH agent; running setup-ssh-agent.sh"
+    "$ROOT/.devcontainer/scripts/setup-ssh-agent.sh" </dev/null \
+        || echo "WARNING: could not load an SSH key; run .devcontainer/scripts/setup-ssh-agent.sh in a terminal." >&2
+fi

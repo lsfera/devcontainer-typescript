@@ -17,6 +17,11 @@ link_dir() {
     ln -sfn "$target" "$link"
 }
 
+# Docker Desktop's forwarded agent socket is root-owned; let the node user use it.
+if [ -S /ssh-agent.sock ]; then
+    sudo chown "$(id -u):$(id -g)" /ssh-agent.sock
+fi
+
 link_dir /workspace/.claude-mem ~/.claude-mem
 link_dir /workspace/.claude-plugins-cache ~/.claude/plugins
 

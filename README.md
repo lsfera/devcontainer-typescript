@@ -11,7 +11,7 @@ time is mounted into the container at `/workspace`.
 - Docker outside of Docker: the host's Docker socket, so the container can run
   sibling containers and Testcontainers (`TESTCONTAINERS_*` are preset).
 - The `devcontainer` bridge network, shared with sibling containers.
-- SSH agent forwarding from the host (`SSH_AUTH_SOCK`), and the host's `known_hosts`.
+- SSH agent forwarding from the host (Docker Desktop's `/run/host-services/ssh-auth.sock`), and the host's `known_hosts`.
 - Forwarded ports: `3001`, `5173` (Vite dev), `4173` (Vite preview).
 - VS Code extensions: Claude Code, Biome, Todo Tree.
 

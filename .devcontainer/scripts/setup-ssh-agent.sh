@@ -1,6 +1,7 @@
 #!/bin/bash
 # Load an SSH key into the local platform's agent so it can be forwarded
-# into the devcontainer via SSH_AUTH_SOCK (see .devcontainer/devcontainer.json).
+# into the devcontainer via Docker Desktop's /run/host-services/ssh-auth.sock
+# (see .devcontainer/devcontainer.json).
 set -euo pipefail
 
 KEY="${1:-$HOME/.ssh/id_ed25519}"

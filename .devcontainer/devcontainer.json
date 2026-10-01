@@ -5,7 +5,7 @@
     "workspaceFolder": "/workspace",
     "mounts": [
         "source=pnpm-store,target=/usr/local/share/pnpm/store,type=volume",
-        "source=${localEnv:SSH_AUTH_SOCK},target=/ssh-agent.sock,type=bind,consistency=cached",
+        "source=/run/host-services/ssh-auth.sock,target=/ssh-agent.sock,type=bind,consistency=cached",
         "source=${localEnv:HOME}/.ssh/known_hosts,target=/home/node/.ssh/known_hosts,type=bind,consistency=cached",
         "source=${localWorkspaceFolder}/.devcontainer/scripts,target=/scripts,type=bind,consistency=cached"
     ],
