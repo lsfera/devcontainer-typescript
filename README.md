@@ -18,7 +18,9 @@ time is mounted into the container at `/workspace`.
 ## Setup
 
 1. Install Docker and the Dev Containers CLI or the VS Code Dev Containers extension.
-2. Load your SSH key into the host agent so git over SSH works inside the container:
+2. Load your SSH key into the host agent so git over SSH works inside the container.
+   `initialize.sh` does this automatically when the agent is empty, but it can't prompt
+   for a passphrase, so run it by hand the first time (or for a non-default key):
 
    ```bash
    .devcontainer/scripts/setup-ssh-agent.sh            # defaults to ~/.ssh/id_ed25519
@@ -70,7 +72,7 @@ installed on start if it is missing.
   devcontainer.json         container definition
   docker-compose.yml        service, /workspace mount, network
   scripts/
-    initialize.sh           host: picks WS_PROJECT, writes .env
+    initialize.sh           host: picks WS_PROJECT, writes .env, loads SSH key
     post-create.sh          once per container: packages, pnpm, Claude CLI
     post-start.sh           every start: Claude state links, claude-mem, rtk
     setup-ssh-agent.sh      host: load an SSH key into the agent
