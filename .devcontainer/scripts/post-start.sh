@@ -65,4 +65,4 @@ fi
 #######
 mkdir -p ~/.ssh
 ssh-keyscan -H github.com >> ~/.ssh/known_hosts
-rtk init -g
+rtk init -g --auto-patch
