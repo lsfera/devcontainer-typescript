@@ -43,5 +43,12 @@ if ! ssh-add -l >/dev/null 2>&1; then
 fi
 
 #######
+# Runtime smoke test
+#######
+if ! /scripts/smoke-test.sh; then
+    echo "WARNING: runtime smoke test failed; see FAIL lines above."
+fi
+
+#######
 # Done
 #######

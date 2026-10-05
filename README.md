@@ -6,7 +6,7 @@ time is mounted into the container at `/workspace`.
 
 ## What's in the container
 
-- Image `mcr.microsoft.com/devcontainers/typescript-node:26-trixie`, plus Bun, pnpm,
+- Image `mcr.microsoft.com/devcontainers/typescript-node:26-trixie`, plus Bun, Deno, pnpm,
   ripgrep, [rtk](https://github.com/rtk-ai/rtk) and the Claude Code CLI.
 - Docker outside of Docker: the host's Docker socket, so the container can run
   sibling containers and Testcontainers (`TESTCONTAINERS_*` are preset).
@@ -51,6 +51,12 @@ Each project gets its own `node_modules` volume (`devcontainer-typescript-<proje
 so switching doesn't mix installs. On create, `pnpm install` runs if the project has a
 `package.json`.
 
+On create, a smoke test checks that Node, Deno and Bun are installed and can run TypeScript. To rerun it inside the container:
+
+```bash
+/scripts/smoke-test.sh
+```
+
 ## Claude Code state
 
 Claude state is kept inside the mounted project so it survives rebuilds:
@@ -73,9 +79,10 @@ installed on start if it is missing.
   docker-compose.yml        service, /workspace mount, network
   scripts/
     initialize.sh           host: picks WS_PROJECT, writes .env, loads SSH key
-    post-create.sh          once per container: packages, pnpm, Claude CLI
+    post-create.sh          once per container: packages, pnpm, Claude CLI, smoke test
     post-start.sh           every start: Claude state links, claude-mem, rtk
     setup-ssh-agent.sh      host: load an SSH key into the agent
+    smoke-test.sh           container: check node, deno and bun run TypeScript
 ws/                         your project repos (git-ignored)
 up.sh                       start the container, optionally switching project
 ```

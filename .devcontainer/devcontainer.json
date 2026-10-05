@@ -19,7 +19,8 @@
         "ghcr.io/devcontainers/features/docker-outside-of-docker:1.10.0": {
             "moby": false
         },
-        "ghcr.io/shyim/devcontainers-features/bun:0": {}
+        "ghcr.io/shyim/devcontainers-features/bun:0": {},
+        "ghcr.io/devcontainers-community/features/deno:1": {}
     },
     "forwardPorts": [
         3001,
