@@ -35,8 +35,7 @@
         "vscode": {
             "extensions": [
                 "Gruntfuggly.todo-tree",
-                "Anthropic.claude-code",
-                "biomejs.biome"
+                "Anthropic.claude-code"
             ]
         }
     }

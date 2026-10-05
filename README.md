@@ -13,7 +13,7 @@ time is mounted into the container at `/workspace`.
 - The `devcontainer` bridge network, shared with sibling containers.
 - SSH agent forwarding from the host (Docker Desktop's `/run/host-services/ssh-auth.sock`), and the host's `known_hosts`.
 - Forwarded ports: `3001`, `5173` (Vite dev), `4173` (Vite preview).
-- VS Code extensions: Claude Code, Biome, Todo Tree.
+- VS Code extensions: Claude Code, Todo Tree.
 
 ## Setup
 
