@@ -35,7 +35,9 @@ time is mounted into the container at `/workspace`.
 
 ## Usage
 
-Start the container with `up.sh`, from any directory:
+Start the container with `up.sh`, from any directory. It also opens VS Code attached to
+the running container, at `/workspace` (needs the `code` command on your `PATH` and the
+Dev Containers extension):
 
 ```bash
 ./up.sh            # reopen the last project
@@ -84,7 +86,7 @@ installed on start if it is missing.
     setup-ssh-agent.sh      host: load an SSH key into the agent
     smoke-test.sh           container: check node, deno and bun run TypeScript
 ws/                         your project repos (git-ignored)
-up.sh                       start the container, optionally switching project
+up.sh                       start the container, optionally switching project, attach VS Code
 ```
 
 ## License
